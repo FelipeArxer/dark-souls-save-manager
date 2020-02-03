@@ -1,12 +1,12 @@
 @echo off
-title Dark Souls Save Manager
+title Dark Souls SaveManager
 color 0B
 
-set backup-location="%systemdrive%\Backup"
+set backup-path="%systemdrive%\_DarkSoulsBackup"
 
 :main-menu
 cls 
-echo Warning: The backup folder is %backup-location%.
+echo Warning: The backup folder is %backup-path%.
 echo.
 echo ==================================
 echo *          Dark Souls 2          *
@@ -28,85 +28,87 @@ echo ==================================
 echo.
 
 set /p choice= Choose an option: 
-if %choice% equ 1 goto number1
-if %choice% equ 2 goto number2
-if %choice% equ 3 goto number3
-if %choice% equ 4 goto number4
-if %choice% equ 5 goto number5
-if %choice% equ 6 goto number6
-if %choice% equ 7 goto number7
-if %choice% equ 8 goto number8
+if %choice% equ 1 goto choice1
+if %choice% equ 2 goto choice2
+if %choice% equ 3 goto choice3
+if %choice% equ 4 goto choice4
+if %choice% equ 5 goto choice5
+if %choice% equ 6 goto choice6
+if %choice% equ 7 goto choice7
+if %choice% equ 8 goto choice8
 if %choice% equ 9 goto :eof
 
+goto main-menu
+
 :: DARK SOULS 2
-:number1
+:choice1
 cls
 if exist "%appdata%\DarkSoulsII" (
-    xcopy "%appdata%\DarkSoulsII\*.*" "%backup-location%\DarkSouls2" /s /y /i > nul
+    xcopy "%appdata%\DarkSoulsII\*.*" "%backup-path%\DarkSouls2" /s /y /i > nul
     goto complete
  ) else (
     goto not-exist
 )
 
-:number2
+:choice2
 cls
-if exist "%backup-location%\DarkSouls2" (
-    xcopy "%backup-location%\DarkSouls2\*.*" "%appdata%\DarkSoulsII" /s /y /i > nul
+if exist "%backup-path%\DarkSouls2" (
+    xcopy "%backup-path%\DarkSouls2\*.*" "%appdata%\DarkSoulsII" /s /y /i > nul
     goto complete
 ) else (
     goto not-exist
 )
 
-:number3
+:choice3
 cls
 if exist "%appdata%\DarkSoulsII" (
-    rd "%appdata%\DarkSoulsII" /s /q
+    rd "%appdata%\DarkSoulsII" /s /q > nul
     goto complete
 ) else (
     goto not-exist
 )
 
-:number4
+:choice4
 cls
-if exist "%backup-location%\DarkSouls2" (
-    rd "%backup-location%\DarkSouls2" /s /q
+if exist "%backup-path%\DarkSouls2" (
+    rd "%backup-path%\DarkSouls2" /s /q > nul
     goto complete
 ) else (
     goto not-exist
 )
 
 :: DARK SOULS 3
-:number5
+:choice5
 cls
 if exist "%appdata%\DarkSoulsIII" (
-    xcopy "%appdata%\DarkSoulsIII\*.*" "%backup-location%\DarkSouls3" /s /y /i > nul
+    xcopy "%appdata%\DarkSoulsIII\*.*" "%backup-path%\DarkSouls3" /s /y /i > nul
     goto complete
  ) else (
     goto not-exist
 )
 
-:number6
+:choice6
 cls
-if exist "%backup-location%\DarkSouls3" (
-    xcopy "%backup-location%\DarkSouls3\*.*" "%appdata%\DarkSoulsIII" /s /y /i > nul
+if exist "%backup-path%\DarkSouls3" (
+    xcopy "%backup-path%\DarkSouls3\*.*" "%appdata%\DarkSoulsIII" /s /y /i > nul
     goto complete
 ) else (
     goto not-exist
 )
 
-:number7
+:choice7
 cls
 if exist "%appdata%\DarkSoulsIII" (
-    rd "%appdata%\DarkSoulsIII" /s /q
+    rd "%appdata%\DarkSoulsIII" /s /q > nul
     goto complete
 ) else (
     goto not-exist
 )
 
-:number8
+:choice8
 cls
-if exist "%backup-location%\DarkSouls3" (
-    rd "%backup-location%\DarkSouls3" /s /q
+if exist "%backup-path%\DarkSouls3" (
+    rd "%backup-path%\DarkSouls3" /s /q > nul
     goto complete
 ) else (
     goto not-exist
